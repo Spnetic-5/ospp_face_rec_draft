@@ -18,18 +18,10 @@ This demo uses the dataset of around 800k images consisting of 1100 Famous Celeb
 
 ### Requirements
 
-- [Milvus 2.0](https://milvus.io/docs/v2.0.0/install_standalone-docker.md)
+- [Milvus](https://milvus.io/docs/v2.0.0/install_standalone-docker.md)
 - [MySQL](https://hub.docker.com/r/mysql/mysql-server)
 - [Python3](https://www.python.org/downloads/)
 - [Docker](https://docs.docker.com/engine/install/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
-
-
-> For installing all the required packages & libraries, Please run the following command:
-```bash
-$ git clone https://github.com/milvus-io/bootcamp.git
-$ pip install -m requirements.txt
-```
 
 ## Option 1: Deploy with Docker Compose
 
@@ -51,30 +43,44 @@ $ docker-compose up -d
 Then you will see the that all containers are created.
 
 ```bash
-Creating network "quick_deploy_app_net" with driver "bridge"
-Creating milvus-etcd          ... done
-Creating milvus-minio         ... done
-Creating img-search-mysql     ... done
-Creating img-search-webclient ... done
-Creating milvus-standalone    ... done
-Creating img-search-webserver ... done
+[+] Running 12/12
+ ⠿ standalone Pulled                                                                                                                                                                          28.5s
+   ⠿ 171857c49d0f Pull complete                                                                                                                                                                4.6s
+   ⠿ 419640447d26 Pull complete                                                                                                                                                                4.9s
+   ⠿ 61e52f862619 Pull complete                                                                                                                                                                5.0s
+   ⠿ 2580b47486e5 Pull complete                                                                                                                                                               20.3s
+   ⠿ cd742921730d Pull complete                                                                                                                                                               22.2s
+   ⠿ 936cb7027fe4 Pull complete                                                                                                                                                               22.2s
+   ⠿ 319dd389c04d Pull complete                                                                                                                                                               24.2s
+   ⠿ 543c11caaeb6 Pull complete                                                                                                                                                               24.3s
+   ⠿ 06d62b89360c Pull complete                                                                                                                                                               24.5s
+   ⠿ 5186d5863148 Pull complete                                                                                                                                                               24.6s
+   ⠿ b410b80e82c0 Pull complete                                                                                                                                                               24.7s
+[+] Running 3/3
+ ⠿ Container milvus-minio       Started                                                                                                                                                        1.3s
+ ⠿ Container milvus-etcd        Started                                                                                                                                                        1.3s
+ ⠿ Container milvus-standalone  Started  
 ```
 
 And show all containers with `docker ps`, and you can use `docker logs img-search-webserver` to get the logs of **server** container.
 
 ```bash
-CONTAINER ID   IMAGE                                         COMMAND                  CREATED              STATUS                             PORTS                               NAMES
-25b4c8e13590   milvusbootcamp/img-search-server:towhee       "/bin/sh -c 'python3…"   59 seconds ago       Up 49 seconds                      0.0.0.0:5000->5000/tcp              img-search-webserver
-ae9a9a783952   milvusdb/milvus:v2.0.0-rc8-20211104-d1f4106   "/tini -- milvus run…"   59 seconds ago       Up 58 seconds                      0.0.0.0:19530->19530/tcp            milvus-standalone
-7e88bdf66d96   minio/minio:RELEASE.2020-12-03T00-03-10Z      "/usr/bin/docker-ent…"   About a minute ago   Up 59 seconds (healthy)            9000/tcp                            milvus-minio
-4a3ea5fff0f9   mysql:5.7                                     "docker-entrypoint.s…"   About a minute ago   Up 59 seconds                      0.0.0.0:3306->3306/tcp, 33060/tcp   img-search-mysql
-f3c7440d5dc4   milvusbootcamp/img-search-client:1.0          "/bin/bash -c '/usr/…"   About a minute ago   Up 59 seconds (health: starting)   0.0.0.0:8001->80/tcp                img-search-webclient
-cc6b473d905d   quay.io/coreos/etcd:v3.5.0                    "etcd -advertise-cli…"   About a minute ago   Up 59 seconds                      2379-2380/tcp                       milvus-etcd
+CONTAINER ID   IMAGE                                      COMMAND                  CREATED         STATUS                   PORTS                                           NAMES
+3c8d3ceab1ab   milvusdb/milvus:v2.0.2                     "/tini -- milvus run…"   4 minutes ago   Up 4 minutes             0.0.0.0:19530->19530/tcp, :::19530->19530/tcp   milvus-standalone
+43c1353b98a2   minio/minio:RELEASE.2020-12-03T00-03-10Z   "/usr/bin/docker-ent…"   4 minutes ago   Up 4 minutes (healthy)   9000/tcp                                        milvus-minio
+ab2c1c06ea1e   quay.io/coreos/etcd:v3.5.0                 "etcd -advertise-cli…"   4 minutes ago   Up 4 minutes             2379-2380/tcp                                   milvus-etcd
 ```
+
 
 ## Option 2: Deploy with source code
 
-We recommend using Docker Compose to deploy the reverse image search system. However, you also can run from source code, you need to manually start [Milvus](https://milvus.io/docs/v2.0.0/install_standalone-docker.md) and [Mysql](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/docker-mysql-getting-started.html). Next show you how to run the API server and Client.
+> For installing all the required packages & libraries, Please run the following command:
+```bash
+$ git clone https://github.com/milvus-io/bootcamp.git
+$ pip install -m requirements.txt
+```
+
+The face recognition bootcamp system requires Milvus, MySQL, WebServer and WebClient services. We can start these containers with one click through [docker-compose.yaml](./docker-compose.yaml).
 
 ### 1. Start Milvus & Mysql
 
