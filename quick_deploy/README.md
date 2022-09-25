@@ -5,7 +5,7 @@ This demo uses [Milvus Vector Database](https://milvus.io/) for storing face emb
 
 The system architecture is as below:
 <p align="center">
-<img src="./assets/workflow.png" width = "450" height = "600" alt="system_arch" />
+<img src="workflow.png" width = "500" height = "600" alt="system_arch" />
 </p>
 
 ## Data Source
