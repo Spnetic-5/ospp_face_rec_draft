@@ -140,7 +140,7 @@ Then start the server.
 python3 quick_deploy/server/src/face_finder.py test.jpg
 ```
 
-## Code  structure
+## Code structure
 
 If you are interested in our code or would like to contribute code, feel free to learn more about our code structure.
 
@@ -149,22 +149,19 @@ server
 ├── Dockerfile
 ├── requirements.txt
 └── src
-    ├── __init__.py
+    ├── celeb_reorganized
+    ├── volumes
     ├── config.py # Configuration file
-    ├── encode.py # Convert an image to embedding using towhee pipeline (ResNet50)
-    ├── encode_tf_resnet50.py # Old encoder file using ResNet50 by tensorflow
-    ├── logs.py
-    ├── main.py # Source code to start webserver
-    ├── milvus_helpers.py # Connect to Milvus server and insert/drop/query vectors in Milvus.
-    ├── mysql_helpers.py # Connect to MySQL server, and add/delete/query IDs and object information.
-    ├── operations
-    │   ├── __init__.py
-    │   ├── count.py
-    │   ├── drop.py
-    │   ├── load.py
-    │   ├── search.py
-    │   └── upload.py
+    ├── encoded_save.npy # Convert an image to embedding (ResNet50)
+    ├── example.py # Milvus starter example
+    ├── face_finder.py # Source code to start webserver
+    ├── id_to_class
+    ├── identity_CelebA.txt
+    ├── identity_save.npy
+    ├── prepare_data.py
     └── test_main.py # Pytest file for main.py
 ```
+
+## Results
 
 ![Screenshot from 2022-08-13 01-57-52](https://user-images.githubusercontent.com/66636289/184447727-ec77dc47-25f7-430b-8593-1178683358f0.png)
