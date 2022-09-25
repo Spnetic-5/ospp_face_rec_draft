@@ -13,6 +13,7 @@ The system architecture is as below:
 This demo uses the dataset of around 800k images consisting of 1100 Famous Celebrities and an Unknown class to classify unknown faces. All the images have been scraped from Google and contains no duplicate images. Each Celebrity class(folder) consists approximately 700-800 images and the Unknown class consists of 100k images.
 
 - Download the following dataset(zip) inside `quick_deploy/server/src`: [Celeb Dataset](https://drive.google.com/file/d/0B7EVK8r0v71pZjFTYXZWM3FlRnM/edit)
+- Optional but recommended: Download the encoded celebrity files(will save a lot of time due to slow processing of images): [Encodings](https://drive.google.com/file/d/1kWRApLKWveCHsdVH2TCNF2GPKRYw2ZdO/view)
 
 > Note: You can also use other images for testing. This system supports the following formats: .jpg and .png.
 
