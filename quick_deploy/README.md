@@ -92,7 +92,7 @@ There are several ways to start Mysql. One option is using docker to create a co
 ```bash
 $ mkdir -p /home/$USER/milvus/conf
 $ cd /home/$USER/milvus/conf
-$ wget https://raw.githubusercontent.com/Spnetic-5/ospp_face_rec_draft/edit/main/quick_deploy/server_config.yaml
+$ wget https://raw.githubusercontent.com/milvus-io/milvus/v1.1.0/core/conf/demo/server_config.yaml
 ```
 
 
