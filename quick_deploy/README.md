@@ -19,7 +19,7 @@ This demo uses the dataset of around 800k images consisting of 1100 Famous Celeb
 ### Requirements
 
 - [Milvus](https://milvus.io/docs/v2.0.0/install_standalone-docker.md)
-- [MySQL](https://hub.docker.com/r/mysql/mysql-server)
+- [SQLite](https://hub.docker.com/r/mysql/mysql-server)
 - [Python3](https://www.python.org/downloads/)
 - [Docker](https://docs.docker.com/engine/install/)
 
@@ -33,7 +33,7 @@ $ git clone https://github.com/milvus-io/bootcamp.git
 $ cd solutions/reverse_image_search/quick_deploy
 $ vim docker-compose.yaml
 ```
-> Change line 73: `./data:/data` --> `your_data_path:/data`
+> Change line 32: `./standalone:/image` --> `milvusdb:/your_milvus_version`
 
 - Create containers & start servers with docker-compose.yaml
 ```bash
@@ -74,15 +74,25 @@ ab2c1c06ea1e   quay.io/coreos/etcd:v3.5.0                 "etcd -advertise-cliâ€
 
 ## Option 2: Deploy with source code
 
-We recommend using Docker Compose to deploy the face recognition bootcamp. However, you also can run from source code, you need to manually start [Milvus](https://milvus.io/docs/v2.0.0/install_standalone-docker.md) and [Mysql](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/docker-mysql-getting-started.html). Next show you how to run the API server and Client.
+We recommend using Docker Compose to deploy the face recognition bootcamp. However, you also can run from source code, you need to manually start [Milvus](https://milvus.io/docs/v2.0.0/install_standalone-docker.md) and [SQLite](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/docker-mysql-getting-started.html). Next show you how to run the API server and Client.
 
-### 1. Start Milvus & Mysql
+### 1. Start Milvus
 
-First, you need to start Milvus & Mysql servers.
+First, you need to start Milvus & SQLite servers.
 
 Refer [Milvus Standalone](https://milvus.io/docs/v2.0.0/install_standalone-docker.md) for how to install Milvus. Please note the Milvus version should match pymilvus version in [config.py](./server/src/config.py).
 
 There are several ways to start Mysql. One option is using docker to create a container:
+
+- Download Configuration Files
+
+```bash
+$ mkdir -p /home/$USER/milvus/conf
+$ cd /home/$USER/milvus/conf
+$ wget https://raw.githubusercontent.com/Spnetic-5/ospp_face_rec_draft/edit/main/quick_deploy/server_config.yaml
+```
+
+
 ```bash
 $ sudo docker run -d --name milvus_cpu_1.1.0 -p 19530:19530 -p 19121:19121 -v /home/$USER/milvus/db:/var/lib/milvus/db -v /home/$USER/milvus/conf:/var/lib/milvus/conf -v /home/$USER/milvus/logs:/var/lib/milvus/logs -v /home/$USER/milvus/wal:/var/lib/milvus/wal milvusdb/milvus:1.1.0-cpu-d050721-5e559c
 ```
