@@ -12,7 +12,10 @@ The system architecture is as below:
 
 This demo uses the dataset of around 800k images consisting of 1100 Famous Celebrities and an Unknown class to classify unknown faces. All the images have been scraped from Google and contains no duplicate images. Each Celebrity class(folder) consists approximately 700-800 images and the Unknown class consists of 100k images.
 
+- Download the following dataset(zip) inside `quick_deploy/server/src`: [Celeb Dataset](https://drive.google.com/file/d/0B7EVK8r0v71pZjFTYXZWM3FlRnM/edit)
+
 > Note: You can also use other images for testing. This system supports the following formats: .jpg and .png.
+
 
 ## Local Deployment
 
@@ -125,7 +128,7 @@ Modify the parameters according to your own environment. Here listing some param
  **Prepare the dataset for Milvus Search Engine**
 
 ```bash
-python3 prepare_data.py
+python3 quick_deploy/server/src/prepare_data.py
 ```
 
 - **Run the code**
@@ -133,7 +136,7 @@ python3 prepare_data.py
 Then start the server.
 - Replace test.jpg with <image_path>
 ```bash
-python3 celeb_finder.py test.jpg
+python3 quick_deploy/server/src/face_finder.py test.jpg
 ```
 
 ## Code  structure
