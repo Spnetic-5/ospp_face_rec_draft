@@ -128,6 +128,7 @@ Modify the parameters according to your own environment. Here listing some param
  **Prepare the dataset for Milvus Search Engine**
 
 ```bash
+cd quick_deploy/server/src/
 python3 quick_deploy/server/src/prepare_data.py
 ```
 
