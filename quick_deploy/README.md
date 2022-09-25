@@ -1,4 +1,4 @@
-# Face Recognition Bootcamp Project using Milvus.
+# Face Recognition Bootcamp Project using Milvus Vector Database.
 
 This demo uses [Milvus Vector Database](https://milvus.io/) for storing face embeddings & performing face similaity search based on those stored embeddings. Milvus is a vector similarity search engine, a tool that lets you quickly find the closest matching vector in a pool of billions of vectors.
 
